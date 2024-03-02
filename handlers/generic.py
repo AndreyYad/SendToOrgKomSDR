@@ -1,6 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import Message
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 
 from modules.bot_commands import send_msg, forward_msg
 from modules.text import Text
@@ -16,7 +16,6 @@ async def start_func(msg: Message):
 
     # from pprint import PrettyPrinter
     # pp = PrettyPrinter(indent=4)
-    # pp.pprint(msg.reply_to_message.__dict__)
 
 async def send_msg_func(msg: Message):
     await forward_msg(
@@ -41,6 +40,7 @@ async def reply_to_msg_func(msg: Message):
     )
 
 async def register_generic_handlers():
+    router.message.register(lambda msg: print(msg.chat.id), Command('id'))
     router.message.register(start_func, CommandStart(), F.chat.type == 'private')
     router.message.register(send_msg_func, F.chat.type == 'private')
     router.message.register(
