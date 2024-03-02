@@ -35,7 +35,7 @@ async def reply_to_msg_func(msg: Message):
         text
     )
     await send_msg(
-        msg.from_user.id,
+        msg.chat.id,
         Text.send_succes
     )
 
