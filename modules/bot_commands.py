@@ -38,9 +38,9 @@ async def delete_msg(chat_id: int, msg_id: int):
 async def forward_msg(chat_id_to: int, chat_id_from: int, msg_id: int, anonim: bool=False, **kwargs):
     '''Пересылка сообщения'''
     if not anonim:
-        await bot.forward_message(chat_id_to, chat_id_from, msg_id, **kwargs)
+        return await bot.forward_message(chat_id_to, chat_id_from, msg_id, **kwargs)
     else:
-        await bot.copy_message(chat_id_to, chat_id_from, msg_id, **kwargs)
+        return await bot.copy_message(chat_id_to, chat_id_from, msg_id, **kwargs)
 
 if __name__ == '__main__':
     # run()
