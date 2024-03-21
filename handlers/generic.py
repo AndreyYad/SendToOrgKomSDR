@@ -32,16 +32,10 @@ async def send_msg_func(msg: Message):
     )
 
 async def reply_to_msg_func(msg: Message):
-    print(11111)
     text = msg.text[6:]
-
-    # from pprint import PrettyPrinter
-    # pp = PrettyPrinter(indent=4)
-    # pp.pprint(msg.reply_to_message.__dict__)
 
     user_id = await get_user_id(msg.reply_to_message.message_id)
     if user_id == 0:
-        print('!!!')
         user_id = msg.reply_to_message.forward_from.id
 
     await send_msg(
